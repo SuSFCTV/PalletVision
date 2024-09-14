@@ -56,7 +56,8 @@ def detect_objects(image):
     scores = outputs[2][0]
     additional_info = outputs[3][0]
 
-    score_threshold = 0.3
+    box_threshold = 0.3
+    score_threshold = 0.43
 
     img_pil = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
     draw = ImageDraw.Draw(img_pil)
@@ -71,12 +72,12 @@ def detect_objects(image):
     not_very_bad = True
 
     for i in range(len(scores)):
-        if scores[i] > score_threshold and additional_info[i] != -1:
+        if scores[i] > box_threshold and additional_info[i] != -1:
             if additional_info[i] < len(classes):
                 x_min, y_min, x_max, y_max = bboxes[i]
                 class_name = classes[additional_info[i]]
 
-                if class_name in ["not broken pallet", "clean pallet"]:
+                if class_name in ["not broken pallet", "clean pallet"] and scores[i] > score_threshold:
                     good_boxes.append((i, scores[i], (x_min, y_min, x_max, y_max)))
                 else:
                     if scores[i] > 0.7:
