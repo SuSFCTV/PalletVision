@@ -11,7 +11,8 @@ import matplotlib.pyplot as plt
 from style import Seafoam
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-session = ort.InferenceSession("weights/yolow-l3.onnx")
+# current model
+session = ort.InferenceSession("weights/fpn-rcnn.onnx")
 
 BOX_COLOR = "red"
 TEXT_COLOR = "white"
@@ -142,4 +143,4 @@ demo = gr.Interface(
 )
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(share=True)
