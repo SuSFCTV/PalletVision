@@ -21,13 +21,12 @@ classes = [
     "not broken pallet",
     "clean pallet",
     "nails",
-    "wood splits",
-    "wood cracks",
-    "plank cracks",
+    "damaged wood splits",
+    "damaged wood cracks",
+    "damaged plank cracks",
     "holes in wood",
     "asymmetric structure",
     "wood damage",
-    "damage",
 ]
 
 
